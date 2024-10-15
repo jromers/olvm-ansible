@@ -15,7 +15,7 @@ vm_instances:
 
 # Variables used to connect to the OLVM manager server
 
-olvm_fqdn: olvm-mgr.local
+olvm_fqdn: olvm-mgr.demo.local
 olvm_user: admin@internal
 olvm_cafile: /etc/pki/ovirt-engine/ca.pem
 olvm_cluster: Homelab
@@ -28,7 +28,7 @@ vm_ram: 2048MiB
 # Variables used for cloud-init
 
 vm_dns: 192.168.1.3
-vm_dns_domain: local
+vm_dns_domain: demo.local
 vm_gateway: 192.168.1.1
 vm_netmask: 255.255.255.0
 vm_timezone: Europe/Amsterdam
