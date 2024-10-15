@@ -9,12 +9,12 @@ The playbooks uses modules from the [ovirt.ovirt Ansible collection](https://doc
 
 ## Ansible CLI
 
-First step is the configuration of the playbook variables which are mostly configured in ``default_vars.yml`` file. Some of the variables may be used in the command line when not configured in the default variables file. Variable are required to configure your infrastructure settings for the OLVM server, VM configuration and cloud-init. See below table for explanation of used variables. 
+First step is the configuration of the playbook variables which are mostly configured in ``default_vars.yml`` file. Some of the variables may be used in the command line when not configured in the default variables file. Variables are required to configure your infrastructure settings for the OLVM server, VM configuration and cloud-init. See below table for explanation of the variables. 
 
-Best to use a python virtual environment to run the playbooks, it can be used like this if used with the Oracle provided templates:
+Best to use a python virtual environment to run the playbooks, it can be used like this:
 
-    $ git clone https://github.com/oracle-samples/ansible-collections olvm-playbooks
-    $ cd olvm-playbooks/playbooks/OLVM
+    $ git clone https://github.com/jromers/olvm-lab.git olplaybooks
+    $ cd olplaybooks
     $ python3 -m venv venv
     $ source venv/bin/activate
     $ pip install ansible
