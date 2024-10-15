@@ -13,11 +13,13 @@ First step is the configuration of the playbook variables which are mostly confi
 
 Best to use a python virtual environment to run the playbooks, it can be used like this if used with the Oracle provided templates:
 
+    $ git clone https://github.com/oracle-samples/ansible-collections olvm-playbooks
+    $ cd olvm-playbooks/playbooks/OLVM
     $ python3 -m venv venv
     $ source venv/bin/activate
     $ pip install ansible
     $ source venv/bin/activate
-    $ ansible-galaxy collection install -f ovirt.ovirt
+    $ ansible-galaxy collection install -r collections/requirements.yml
     $ vi default_vars.yml
     $ ansible-playbook -i olvm.demo.local, -u opc --key-file ~/.ssh/id_rsa  -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" olvm_create_single_vm.yml
 
