@@ -21,13 +21,18 @@ Best to use a python virtual environment to run the playbooks, it can be used li
     $ source venv/bin/activate
     $ ansible-galaxy collection install -r collections/requirements.yml
     $ vi default_vars.yml
-    $ ansible-playbook -i olvm.demo.local, -u opc --key-file ~/.ssh/id_rsa  -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" olvm_create_single_vm.yml
+    $ ansible-playbook -i olvm.demo.local, -u opc --key-file ~/.ssh/id_rsa \
+        -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" \
+        olvm_create_single_vm.yml
 
 Note 1: using the OLVM server FQDN, suspended with a comma, is a quick-way to not use a inventory file.
 
 Note 2: as it includes clear-text passwords, for better security you may want to encrypt the ``default_vars.yml`` file with the ansible-vault command. When running the playbook, ansible asks for a secret to decrypt the yml-file.
 
     $ ansible-vault encrypt default_vars.yml
+    $ ansible-playbook -i olvm.demo.local, -u opc --key-file ~/.ssh/id_rsa \
+        -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" \
+        --ask-vault-pass olvm_create_single_vm.yml
 
 ## Oracle Linux Automation Manager
 
