@@ -1,0 +1,39 @@
+---
+
+# Configure default_vars.yml to setup default infrastrcuture variables
+#
+# Define following variables as extra-vars, for example:
+#   --extra-vars "dst_kvmhost=XXX"
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  gather_facts: no
+
+  vars_files:
+    - default_vars.yml
+
+  tasks:
+    - name: Login to OLVM manager
+      ovirt_auth:
+        hostname: "{{ olvm_fqdn }}"
+        username: "{{ olvm_user }}"
+        password: "{{ olvm_password }}"
+        ca_file: "{{ olvm_cafile | default(omit) }}"
+        insecure: "{{ olvm_insecure | default(true) }}"
+      tags:
+        - always
+
+    - name: Migrate VM to assigned host
+      ovirt_vm:
+        auth: "{{ ovirt_auth }}"
+        state: running
+        name: "{{ vm_name }}"
+        host: "{{ dst_kvmhost }}"
+        cluster: "{{ olvm_cluster }}"
+        wait: true
+
+    - name: Cleanup OLVM auth token
+      ovirt_auth:
+        ovirt_auth: "{{ ovirt_auth }}"
+        state: absent

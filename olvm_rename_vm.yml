@@ -1,0 +1,38 @@
+---
+
+# Configure default_vars.yml to setup default infrastrcuture variables
+#
+# Define following variables as extra-vars, for example:
+#   --extra-vars "vm_id=XXX"
+#   --extra-vars "vm_newname=YYY"
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  gather_facts: no
+
+  vars_files:
+    - default_vars.yml
+
+  tasks:
+    - name: Login to OLVM manager
+      ovirt_auth:
+        hostname: "{{ olvm_fqdn }}"
+        username: "{{ olvm_user }}"
+        password: "{{ olvm_password }}"
+        ca_file: "{{ olvm_cafile | default(omit) }}"
+        insecure: "{{ olvm_insecure | default(true) }}"
+      tags:
+        - always
+
+    - name: Rename VM
+      ovirt_vm:
+        auth: "{{ ovirt_auth }}"
+        id:  "{{ vm_id }}"
+        name: "{{ vm_newname }}"
+        wait: true
+
+    - name: Cleanup OLVM auth token
+      ovirt_auth:
+        ovirt_auth: "{{ ovirt_auth }}"
+        state: absent

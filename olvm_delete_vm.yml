@@ -1,0 +1,34 @@
+---
+
+# Configure default_vars.yml to setup default infrastrcuture variables
+#
+# Define following variables as extra-vars:
+#   --extra-vars "vm_name=oltest"
+
+- hosts: all
+  become: yes
+  
+  vars_files:
+    - default_vars.yml
+
+  tasks:
+    - name: Login to OLVM manager
+      ovirt_auth:
+        hostname: "{{ olvm_fqdn }}"
+        username: "{{ olvm_user }}"
+        password: "{{ olvm_password }}"
+        ca_file: "{{ olvm_cafile | default(omit) }}"
+        insecure: "{{ olvm_insecure | default(true) }}"
+      tags:
+        - always
+
+    - name: Delete the VM {{ vm_name }}
+      ovirt_vm:
+        auth: "{{ ovirt_auth }}"
+        state: absent
+        name: "{{ vm_name }}"
+
+    - name: Cleanup OLVM auth token
+      ovirt_auth:
+        ovirt_auth: "{{ ovirt_auth }}"
+        state: absent
