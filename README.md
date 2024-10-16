@@ -49,16 +49,13 @@ Besides the standard SSH credential to access the target host, an additional cre
     Password:			<passwd used for GUI logon>
 
 ### Templates
-Create a new job template 
+Create a new job template and provide the following information:
 
-# Deploying OLVM VM instances
-
-Two playbooks are provided to deploy new virtual machines in Oracle Linux Virtualization Manager based on a pre-configured template. This may be your own template or templates downloaded from Oracle's website which can be [imported directly in Oracle Linux Virtualization Manager](https://docs.oracle.com/en/virtualization/oracle-linux-virtualization-manager/admin/admin-admin-tasks.html#templates-create):
-
-* [Free Oracle Linux templates](https://yum.oracle.com/oracle-linux-templates.html)
-* [Single Instance and Oracle Real Application Clusters (RAC) templates](https://www.oracle.com/database/technologies/rac/vm-db-templates.html)
-
-The Oracle provided templates use cloud-init to automate the initial setup of virtual machines and cloud-init variables are included in the playbooks.
+    Inventory:		Select the inventory containing the OLVM host
+    Project:		Select project from the Github repository
+    Playbook:		Select playbook from Project, for example olvm_create_single_vm.yml
+    Credentials:	Select Machine (SSH) credential and the Virtualization credentials
+    Variables:		Enter the variables as used in the example default_vars.yml file
 
 # Variables used in the playbooks 
 
@@ -86,3 +83,14 @@ The Oracle provided templates use cloud-init to automate the initial setup of vi
 | dst_kvmhost | KVM1 | Name (not hostname) of kvm host in OLVM cluster and destination for live-migration
 | vm_id | 76c76c8b-a9ad-414e-8274-181a1ba8948b | VM ID for the VM, used for rename of VM
 | vm_newname | oltest | New name for VM with vm_id, used for rename of VM
+
+
+# Deploying Oracle Linux OLVM VM templates
+
+Two playbooks are provided to deploy new virtual machines in Oracle Linux Virtualization Manager based on a pre-configured template. This may be your own template or templates downloaded from Oracle's website which can be [imported directly in Oracle Linux Virtualization Manager](https://docs.oracle.com/en/virtualization/oracle-linux-virtualization-manager/admin/admin-admin-tasks.html#templates-create):
+
+* [Free Oracle Linux templates](https://yum.oracle.com/oracle-linux-templates.html)
+* [Single Instance and Oracle Real Application Clusters (RAC) templates](https://www.oracle.com/database/technologies/rac/vm-db-templates.html)
+
+The Oracle provided templates use cloud-init to automate the initial setup of virtual machines and cloud-init variables are included in the playbooks.
+
