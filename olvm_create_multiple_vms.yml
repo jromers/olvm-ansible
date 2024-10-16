@@ -1,6 +1,6 @@
 ---
 
-# Configure default_vars_multiple_vms.yml to setup default infrastrcuture variables
+# Configure default_vars_multiple_vms.yml to define VMs to create
 #
 
 - hosts: all
@@ -9,15 +9,21 @@
   gather_facts: yes
   
   vars_files:
+    - default_vars.yml
     - default_vars_multiple_vms.yml
     
   tasks:
+    - set_fact:
+        ovirt_url: "{{ lookup('env', 'OVIRT_URL') if 'OVIRT_URL' in ansible_env else olvm_url }}"
+        ovirt_username: "{{ lookup('env', 'OVIRT_USERNAME') if 'OVIRT_USERNAME' in ansible_env else olvm_username }}"
+        ovirt_password: "{{ lookup('env', 'OVIRT_PASSWORD') if 'OVIRT_PASSWORD' in ansible_env else olvm_password }}"
+
     - name: Login to OLVM manager
       ovirt_auth:
-        hostname: "{{ olvm_fqdn }}"
-        username: "{{ olvm_user }}"
-        password: "{{ olvm_password }}"
-        ca_file: "{{ olvm_cafile | default(omit) }}"
+        url: "{{ ovirt_url }}"
+        username: "{{ ovirt_username }}"
+        password: "{{ ovirt_password }}"
+        ca_file: "{{ olvm_cafile | default('/etc/pki/ovirt-engine/ca.pem') }}"
         insecure: "{{ olvm_insecure | default(true) }}"
       tags:
         - always
