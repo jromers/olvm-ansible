@@ -25,7 +25,7 @@ Best to use a python virtual environment to run the playbooks, it can be used li
         -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" \
         olvm_create_single_vm.yml
 
-Note 1: using the OLVM server FQDN, suspended with a comma, is a quick-way to not use a inventory file.
+Note 1: using the OLVM server FQDN, appended with a comma, is a quick-way to not use a inventory file.
 
 Note 2: as it includes clear-text passwords, for better security you may want to encrypt the ``default_vars.yml`` file with the ansible-vault command. When running the playbook, ansible asks for a secret to decrypt the yml-file.
 
@@ -36,11 +36,22 @@ Note 2: as it includes clear-text passwords, for better security you may want to
 
 ## Oracle Linux Automation Manager
 
+### Project
 In Oracle Linux Automation Manager you can directly import the playbook repository from Github as Project. The top-level directory of the repository contains the requirements file to download the ovir.ovirt ansible collection.
 
-Create an inventory and add one host with the details of your OLVM server.
+### Inventory
+Create an inventory and add one host with the details of your OLVM server, this is the target host were you run the playbook. Make sure tou have a Machine credential setup for this host so that ansible can SSH to it (run the ping Module for this host).
 
-Create credentials to access the 
+### Credentials
+Besides the standard SSH credential to access the target host, an additional credential is required to use the ovirt modules in the playbooks. It's based on credential type ``Red Hat Virtualization`` and you need to fill in the OLVM FQDN, username, password and CA File. For example:
+
+    Host (Authentication URL): 	olvm-mgr.fl390.local
+    Username:			admin@internal
+    Password:			<passwd used for GUI logon>
+    CA File: 			/etc/pki/ovirt-engine/ca.pem
+
+### Templates
+Create a new job template 
 
 # Deploying OLVM VM instances
 
