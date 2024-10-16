@@ -1,18 +1,12 @@
-# This file containes passwords for the local OLVM Manager as well as the 
-# root user for the VM. If you add the passwords in clear-text, you may 
-# encrypt this file using the ansible-vault command to protect the passwords:
+# This file containes password for the root user for the VM. If you 
+# add the passwords in clear-text, you may encrypt this file using the 
+# ansible-vault command to protect the passwords (alternative is to 
+# use -e "vm_root_passwd=XXX" in CLI:
 #
 #     $ ansible-vault encrypt default_vars.yml
 #
 # For Oracle Linux Automation Manager GUI:
 #     configure password in Vault and use Vault in template
-
-# Variables used to connect to the OLVM manager server
-
-olvm_url: https://olvm-mgr.fl390.local/ovirt-engine/api
-olvm_username: japio@internal
-olvm_password: 
-olvm_cafile: /etc/pki/ovirt-engine/ca.pem
 
 # Variables used for VM configuration:
 
