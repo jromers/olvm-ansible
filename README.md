@@ -62,7 +62,22 @@ The Oracle provided templates use cloud-init to automate the initial setup of vi
 
 # Variables used in the playbooks 
 
-| Variable | Description |
-| -------- | ----------- |
-
+| Variable | Example value | Description |
+| -------- | ------------- | ----------- |
+| OVIRT_URL | https://olvm-fqdn/ovirt-engine/api |
+| OVIRT_USERNAME | admin@internal |
+| OVIRT_PASSWORD | secret_pw |
+| olvm_cluster | Default |
+| olvm_template | OL9U4_x86_64-olvm-b234 |
+| vn_name | oltest |
+| vm_ip_address | 192.168.1.100 |
+| vm_ram | 2048MiB |
+| vm_root_passwd | |
+| vm_dns | 192.168.1.3 |
+| vm_dns_domain | demo.local |
+| vm_gateway | 192.168.1.1 |
+| vm_netmask | 255.255.255.0 |
+| vm_timezone | Europe/Amsterdam |
+| vm_user | opc |
+| vm_user_sshpubkey | "ssh-rsa AAAA...<YOUR KEY HERE>...hj8= " |
 
