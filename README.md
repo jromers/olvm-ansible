@@ -51,11 +51,11 @@ Besides the standard SSH credential to access the target host, an additional cre
 ### Templates
 Create a new job template and provide the following information:
 
-  Inventory:		Select the inventory containing the OLVM host
-  Project:		Select project from the Github repository
-  Playbook:		Select playbook from Project, for example olvm_create_single_vm.yml
-  Credentials:		Select Machine (SSH) credential and the Virtualization credentials
-  ariables:		Enter the variables as used in the example default_vars.yml file
+    Inventory:		Select the inventory containing the OLVM host
+    Project:		Select project from the Github repository
+    Playbook:		Select playbook from Project, for example olvm_create_single_vm.yml
+    Credentials:		Select Machine (SSH) credential and the Virtualization credentials
+    ariables:		Enter the variables as used in the example default_vars.yml file
 
 # Variables used in the playbooks 
 
