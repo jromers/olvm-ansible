@@ -13,16 +13,26 @@ First step is the configuration of the playbook variables which are mostly confi
 
 The playbooks can be used like this:
 
-    $ git clone https://github.com/jromers/olvm-lab.git olplaybooks
-    $ cd olplaybooks
+    $ git clone https://github.com/jromers/olvm-ansible.git
+    $ cd olam-ansible
     $ ansible-galaxy collection install -r collections/requirements.yml
     $ vi default_vars.yml
     $ export "OVIRT_URL=https://OLVM-FQDN/ovirt-engine/api"
     $ export "OVIRT_USERNAME=admin@internal"
     $ export "OVIRT_PASSWORD=<YOUR PASSWD>"
+
+    # create a single VM
     $ ansible-playbook -i OLVM-FQDN, -u opc --key-file ~/.ssh/id_rsa \
         -e "vm_name=oltest" -e "vm_ip_address=192.168.1.100" \
         olvm_create_single_vm.yml
+
+    # delete a VM
+    $ ansible-playbook -i OLVM-FQDN, -u opc --key-file ~/.ssh/id_rsa \
+        -e "vm_name=oltest" olvm_delete_vm.yml
+
+    # live migrate a VM
+    $ ansible-playbook -i OLVM-FQDN, -u opc --key-file ~/.ssh/id_rsa \
+        -e "vm_name=ol04" -e "dst_kvmhost=KVM2" olvm_migrate_vm.yml
 
 Note 1: using the OLVM server FQDN, appended with a comma, is a quick-way to not use a inventory file.
 
@@ -80,7 +90,7 @@ Create a new job template and provide the following information:
 | src_vm | oltest | VM used as source VM for cloning operation
 | src_vm_snapshot | base_snapshot | Name of snapshot of source VM, for cloning operation 
 | dst_vm | oltest_cloned | Name of destination VM for cloning operation
-| dst_kvmhost | KVM1 | Name (not hostname) of kvm host in OLVM cluster and destination for live-migration
+| dst_kvmhost | KVM2 | Name (not hostname) of kvm host in OLVM cluster and destination for live-migration
 | vm_id | 76c76c8b-a9ad-414e-8274-181a1ba8948b | VM ID for the VM, used for rename of VM
 | vm_newname | oltest | New name for VM with vm_id, used for rename of VM
 
