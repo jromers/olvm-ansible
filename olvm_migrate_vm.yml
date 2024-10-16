@@ -3,7 +3,7 @@
 # Configure default_vars.yml to setup default infrastrcuture variables
 #
 # Define following variables as extra-vars, for example:
-#   --extra-vars "vn_name=XXX"
+#   --extra-vars "vm_name=XXX"
 #   --extra-vars "dst_kvmhost=YYY"
 
 - hosts: all
