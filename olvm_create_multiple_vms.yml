@@ -19,7 +19,7 @@
         url: "{{ lookup('env', 'OVIRT_URL') }}"
         username: "{{ lookup('env', 'OVIRT_USERNAME') }}"
         password: "{{ lookup('env', 'OVIRT_PASSWORD') }}
-        ca_file: "{{ olvm_cafile | default('/etc/pki/ovirt-engine/ca.pem') }}"
+        ca_file: "{{ olvm_cafile | default(omit) }}"
         insecure: "{{ olvm_insecure | default(true) }}"
       tags:
         - always
