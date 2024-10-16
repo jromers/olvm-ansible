@@ -35,20 +35,20 @@ Note 2: as it includes clear-text password, for better security you may want to 
 
 ## Oracle Linux Automation Manager
 
-#### Project
+#### Project:
 In Oracle Linux Automation Manager you can directly import the playbook repository from Github as Project. The top-level directory of the repository contains the requirements file to download the ovir.ovirt ansible collection.
 
-#### Inventory
+#### Inventory:
 Create an inventory and add one host with the details of your OLVM server, this is the target host were you run the playbook. Make sure tou have a Machine credential setup for this host so that ansible can SSH to it (run the ping Module for this host).
 
-#### Credentials
+#### Credentials:
 Besides the standard SSH credential to access the target host, an additional credential is required to use the ovirt modules in the playbooks. It's based on credential type ``Red Hat Virtualization`` and you need to fill in the OLVM FQDN, username, password and CA File. For example:
 
     Host (Authentication URL): 	https://OLVM-FQDN/ovirt-engine/api
     Username:			admin@internal
     Password:			<passwd used for GUI logon>
 
-#### Templates
+#### Templates:
 Create a new job template and provide the following information:
 
     Inventory:		Select the inventory containing the OLVM host
