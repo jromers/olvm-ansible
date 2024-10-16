@@ -10,7 +10,7 @@
 # Variables used to connect to the OLVM manager server
 
 olvm_url: https://olvm-mgr.fl390.local/ovirt-engine/api
-olvm_username: admin@internal
+olvm_username: japio@internal
 olvm_password: 
 olvm_cafile: /etc/pki/ovirt-engine/ca.pem
 
