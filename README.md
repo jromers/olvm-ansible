@@ -11,7 +11,7 @@ The playbooks uses modules from the [ovirt.ovirt Ansible collection](https://doc
 
 First step is the configuration of the playbook variables which are mostly configured in ``default_vars.yml`` file. Some of the variables may be used in the command line when not configured in the default variables file. Variables are required to configure your infrastructure settings for the OLVM server, VM configuration and cloud-init. See below table for explanation of the variables. 
 
-Best to use a python virtual environment to run the playbooks, it can be used like this:
+The playbooks can be used like this:
 
     $ git clone https://github.com/jromers/olvm-lab.git olplaybooks
     $ cd olplaybooks
@@ -44,10 +44,9 @@ Create an inventory and add one host with the details of your OLVM server, this 
 ### Credentials
 Besides the standard SSH credential to access the target host, an additional credential is required to use the ovirt modules in the playbooks. It's based on credential type ``Red Hat Virtualization`` and you need to fill in the OLVM FQDN, username, password and CA File. For example:
 
-    Host (Authentication URL): 	olvm-mgr.fl390.local
+    Host (Authentication URL): 	https://OLVM-FQDN/ovirt-engine/api
     Username:			admin@internal
     Password:			<passwd used for GUI logon>
-    CA File: 			/etc/pki/ovirt-engine/ca.pem
 
 ### Templates
 Create a new job template 
