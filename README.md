@@ -65,7 +65,18 @@ Create a new job template and provide the following information:
     Project:		Select project from the Github repository
     Playbook:		Select playbook from Project, for example olvm_create_single_vm.yml
     Credentials:		Select Machine (SSH) credential and the Virtualization credentials
-    ariables:		Enter the variables as used in the example default_vars.yml file
+    Variables:		Enter the variables as used in the example default_vars.yml file
+
+## Secure API connection
+
+By default the API connection to the OLVM server is insecure, if you want to use a secure API connection then you need to define variable ``olvm_insecure`` and make sure the CA file is available (default location is ``/etc/pki/ovirt-engine/ca.pem``). You may use ``olvm_cafile`` to specify alternative location. 
+
+    olvm_insecure: false
+    olvm_cafile: /home/opc/ca.pem
+
+The CA file can be downloaded from the main OLVM web portal or dierectly from the OLVM server, for example:
+
+    $ scp root@olvm-mgr:/etc/pki/ovirt-engine/ca.pem /home/opc/ca.pem
 
 # Variables used in the playbooks 
 
@@ -93,6 +104,8 @@ Create a new job template and provide the following information:
 | dst_kvmhost | KVM2 | Name (not hostname) of kvm host in OLVM cluster and destination for live-migration
 | vm_id | 76c76c8b-a9ad-414e-8274-181a1ba8948b | VM ID for the VM, used for rename of VM
 | vm_newname | oltest | New name for VM with vm_id, used for rename of VM
+| olvm_insecure | false | By default ``true``, but define ``false`` in case you need secure API connection
+| olvm_cafile | /home/opc/ca.pem | Location of CA file in case you wish alternative location
 
 
 # Deploying Oracle Linux OLVM VM templates
