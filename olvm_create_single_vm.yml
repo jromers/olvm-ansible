@@ -33,6 +33,7 @@
         template: "{{ olvm_template }}"
         cluster: "{{ olvm_cluster }}"
         memory: "{{ vm_ram }}"
+        cpu_sockets: "{{ vm_cpu }}"
         high_availability: true
         state: running
         wait: yes

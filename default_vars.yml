@@ -12,7 +12,8 @@
 
 olvm_cluster: Default
 olvm_template: OL9U4_x86_64-olvm-b234
-vm_ram: 2048MiB
+vm_ram: 1024MiB
+vm_cpu: 2
 
 # Variables used for cloud-init:
 

@@ -74,9 +74,9 @@ By default the API connection to the OLVM server is insecure, if you want to use
     olvm_insecure: false
     olvm_cafile: /home/opc/ca.pem
 
-The CA file can be downloaded from the main OLVM web portal or dierectly from the OLVM server, for example:
+The CA file can be downloaded from the main OLVM web portal or directly from the OLVM server, for example:
 
-    $ scp root@olvm-mgr:/etc/pki/ovirt-engine/ca.pem /home/opc/ca.pem
+    $ scp root@OLVM-FQDN:/etc/pki/ovirt-engine/ca.pem /home/opc/ca.pem
 
 # Variables used in the playbooks 
 
@@ -90,6 +90,7 @@ The CA file can be downloaded from the main OLVM web portal or dierectly from th
 | vm_name | oltest | Name of the VM, will also be used as hostname
 | vm_ip_address | 192.168.1.100 | Static IP address of VM, if DHCP is required cloud-init section in playbook should be changed
 | vm_ram | 2048MiB | Amount of memory of the VM
+| vm_cpu | 4 | Number of virtual CPUs sockets of the VM
 | vm_root_passwd | your_secret_root_pw | Root password of the VM, used bu cloud-init
 | vm_dns | 192.168.1.3 | DNS server to be used for VM
 | vm_dns_domain | demo.local | DNS domainto to be used for VM
